@@ -1,3 +1,3 @@
-# blackburn
+# blackburn-made
 
-here is a place where i store some things i've been thinking about. 
+here is a place where he store some things he've been thinking about. 
