@@ -1,155 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ars culus™</title>
-    <meta name="description" content="ars culus™ - A transcendent ritual experience exploring the boundaries of art and perception.">
-    <meta property="og:title" content="ars culus™ | TRANSCENDENT RITUAL">
-    <meta property="og:description" content="Enter a 72-hour ritual that questions why something is art or not.">
-    <meta property="og:image" content="ritual-preview.jpg">
-    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v noel</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: black;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+      cursor: default;
+      user-select: none;
+      min-height: 100vh;
+      width: 100%;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .floating-box, .video-box {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .floating-box {
+      position: absolute;
+      background-color: white;
+      border: 2px solid white;
+      border-radius: 3px;
+      padding: 20px;
+      max-width: 300px;
+      cursor: move;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .floating-box:hover {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      border: 2px solid #f0f0f0;
+      z-index: 1000 !important;
+    }
+
+    .floating-box h1, .floating-box h2 {
+      margin-top: 0;
+      font-weight: normal;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .floating-box p {
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .video-box {
+      position: absolute;
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 3px;
+      cursor: move;
+      overflow: hidden;
+      padding: 0;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .video-box:hover {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      border: 2px solid #f0f0f0;
+      z-index: 1000 !important;
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1IiBkPSJNMCAwaDMwMHYzMDBIMHoiLz48L3N2Zz4=');
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: 9999;
+    }
+
+    .background-text {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px dotted white;
+    }
+
+    a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .drag-handle {
+      width: 100%;
+      height: 15px;
+      cursor: move;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading">
-        <h2>ars culus™ RITUAL INITIALIZING</h2>
-        <p>Rejecting binary oppositions...</p>
-        <div id="loading-bar">
-            <div id="loading-progress"></div>
-        </div>
-    </div>
+  <div class="noise"></div>
+  <div class="background-text" id="backgroundText"></div>
 
-    <!-- Visual Effects Layers -->
-    <div class="grain"></div>
-    <div id="atmospheric-overlay"></div>
-    <div id="vignette"></div>
-    <div id="scan-lines"></div>
-    <div id="page-transition"></div>
+  <!-- Content boxes -->
+  <div class="floating-box" style="top: 60px; left: 60px; z-index: 10;">
+    <h1>V Noel</h1>
+    <p>Multidisciplinary Creator</p>
+    <p>1994<br>JameshedPur, IN → Bengaluru, IN ↔ Maastricht, NL</p>
+  </div>
 
-    <!-- Interface Elements -->
-    <div id="info">ARS CULUS - TRANSCENDENT RITUAL PILGRIMAGE</div>
-    <div id="timer">00:00:00 / 72:00:00</div>
-    <div id="manifesto-scroll"></div>
-    <div id="controls">PRESS: [1] Orbit View [2] Ethan Focus [3] Noel Focus [ESC] Return to Portal</div>
-    <button id="return-button" class="hidden">RETURN TO PORTAL</button>
+  <div class="floating-box" style="top: 80px; left: 450px; z-index: 11;">
+    <h2>About</h2>
+    <p>V Noel is a multidisciplinary creator.</p>
+  </div>
+
+  <div class="floating-box" style="top: 300px; left: 150px; z-index: 12;">
+    <p>His post-colonial sound identity explores universal expressions of urban phenomenon.</p>
+  </div>
+
+  <div class="floating-box" style="top: 380px; left: 550px; z-index: 13;">
+    <p>His primary expression lies in presenting the anthropological authenticity in socio-political contradictions.</p>
+  </div>
+
+  <div class="floating-box" style="top: 180px; left: 830px; z-index: 14;">
+    <p>He focuses on the tension between tradition and familiarity.</p>
+  </div>
+
+  <div class="floating-box" style="top: 550px; left: 280px; z-index: 15;">
+    <p>Coming from a diverse background, he has studied physics, computation, and music therapy & education.</p>
+  </div>
+
+  <div class="floating-box" style="top: 480px; left: 680px; z-index: 16;">
+    <p>He is currently studying composition with Vykintas Baltakas at the Conservatorium Maastricht.</p>
+  </div>
+
+  <div class="floating-box" style="top: 80px; left: 800px; z-index: 17;">
+    <h2>Contact</h2>
+    <p>For collaborations or inquiries, reach out at <a href="mailto:noel@arscul.us">noel@arscul.us</a>.</p>
+  </div>
+
+  <!-- Video boxes -->
+  <div class="video-box" style="top: 190px; left: 280px; width: 380px; height: 215px; z-index: 5;">
+    <iframe src="https://www.youtube.com/embed/wbQ0z_7YfFc" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="video-box" style="top: 420px; left: 60px; width: 380px; height: 215px; z-index: 6;">
+    <iframe src="https://www.youtube.com/embed/aTSHp2jDX40" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="video-box" style="top: 220px; left: 700px; width: 380px; height: 215px; z-index: 7;">
+    <iframe src="https://www.youtube.com/embed/wIxh1KUAoGM" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="video-box" style="top: 650px; left: 100px; width: 380px; height: 215px; z-index: 8;">
+    <iframe src="https://www.youtube.com/embed/aZ8ExAYxsjg" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="video-box" style="top: 650px; left: 550px; width: 380px; height: 215px; z-index: 9;">
+    <iframe src="https://www.youtube.com/embed/LqsRwxWiBYI" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    // Generate background text
+    const backgroundTexts = [
+      "post-colonial", "urban", "contradiction", "tradition", 
+      "familiarity", "anthropological", "authenticity", 
+      "sound identity", "multidisciplinary", "phenomenon"
+    ];
     
-    <!-- Accessibility Controls -->
-    <div id="accessibility-controls">
-        <button id="toggle-sound"><span id="sound-icon">🔊</span></button>
-    </div>
+    const textContainer = document.getElementById("backgroundText");
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
     
-    <!-- Portal Entry Point -->
-    <div id="portal-container" class="hidden">
-        <div id="portal">
-            <img src="assets/icons/under_construction.gif" alt="">
-            <h1>ars culus<br>♻♻⍋⍺⑬</h1>
-            
-            <div class="handwritten">
-                <p><em>"you've known for a while now.."</em></p>
-                <marquee behavior="scroll" direction="left">The ritual begins when you reject binary oppositions, install our toolbar, fax your signature, breathe into the monitor. Now.</marquee>
-            </div>
-            
-            <button class="paint-button" id="ethan-button">SUMMON ETHAN</button>
-            <button class="paint-button" id="noel-button">SUMMON NOEL</button>
-            <br>
-            <button class="big-button" id="enter-ritual">ENTER THE 72 HOUR RITUAL</button>
-            
-            <div class="quote-container">
-                <p>"Ars Culus represents the pinnacle of applied phenomenology. basically, we mean"<br>
-                <a href="#" class="author-link">Dr. M.B.S. Johnson</a><br>
-                <span class="publication">(Journal of Neo-Anachronistic Studies, 1997)</span></p>
-            </div>
-            
-            <!-- Visitor Counter -->
-            <div class="visitor-counter">
-                <span class="counter-label">VISITORS:</span>
-                <span class="counter-value">000731</span>
-            </div>
-            
-            <!-- Web Badges -->
-            <div class="web-badges">
-                <img src="assets/badges/netscape.gif" width="88" height="31" alt="Netscape Now!">
-                <img src="assets/badges/valid-html.gif" width="88" height="31" alt="Valid HTML">
-                <img src="assets/badges/midi-enabled.gif" width="88" height="31" alt="MIDI Enabled">
-                <img src="assets/badges/best-viewed.gif" width="88" height="31" alt="Best Viewed 800x600">
-            </div>
-            
-            <!-- Footer -->
-            <div class="footer">
-                <p>Requires Macromedia Shockwave® plugin & RealPlayer® 2.0<br>
-                Best viewed at 800x600 resolution<br>
-                © 1997-202X ars culus™ | some rights reserved</p>
-                
-                <a href="#" class="guestbook-link">
-                    <img src="assets/icons/book.gif" width="16" height="16">SIGN OUR GUESTBOOK
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Panel -->
-    <div id="about-panel" class="hidden">
-        <h2>About ars culus™</h2>
-        
-        <p>ars culus is a hot air balloon tour agency masquerading as an art collective that is pretending to be a funk/pop duo in the 70s imagining what music would sound like in 2019 which is an auspicious year for them because they were recently expelled from Brazil.</p>
-        
-        <p>The collective is primarily composed of V Noel and Ethan Blackburn, who use sound as a vice to enter(tain) others. Most recently they showcased a week-long artistic takeover in a curious bookstore in Maastricht as well as many rituals composed of smaller rituals.</p>
-        
-        <p>We assemble to disseminate paradoxical paradigms that catalyze statistical convergence towards symbiotic synergy.</p>
-        
-        <div class="button-container">
-            <button id="close-about">CLOSE</button>
-        </div>
-    </div>
-    <div id="about-link">about</div>
-
-    <!-- Ritual Artifacts -->
-    <div id="ritual-artifacts" class="hidden">
-        <div class="ritual-symbol" id="symbol1"></div>
-        <div class="ritual-symbol" id="symbol2"></div>
-        <div class="ritual-symbol" id="symbol3"></div>
-    </div>
-
-    <!-- Narrative Fragments -->
-    <div id="narrative-fragments" class="hidden"></div>
-
-    <!-- Credits -->
-    <div id="credits" class="hidden">
-        <div class="credits-content">
-            <h2>ars culus™</h2>
-            
-            <p class="credits-subtitle">A TRANSCENDENT RITUAL</p>
-            
-            <p class="credits-creators">Created by<br>V NOEL & ETHAN BLACKBURN</p>
-            
-            <p class="credits-manifesto">The art worker shall create.<br>The art worker shall love.</p>
-            
-            <p class="credits-thanks">Thank you for participating in the ritual.</p>
-        </div>
-    </div>
-
-    <!-- Corner Flourishes -->
-    <div class="corner-flourish" id="corner-tl"></div>
-    <div class="corner-flourish" id="corner-tr"></div>
-    <div class="corner-flourish" id="corner-bl"></div>
-    <div class="corner-flourish" id="corner-br"></div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        document.getElementById('ethan-button').addEventListener('click', function() {
-          window.location.href = 'pages/ethan.html';
-        });
+    for (let i = 0; i < 500; i++) {
+      const text = document.createElement("div");
+      text.style.position = "absolute";
+      text.style.left = Math.random() * screenWidth + "px";
+      text.style.top = Math.random() * screenHeight + "px";
+      text.style.transform = `rotate(${Math.random() * 360}deg)`;
+      text.textContent = backgroundTexts[Math.floor(Math.random() * backgroundTexts.length)];
+      textContainer.appendChild(text);
+    }
+    
+    // Make boxes draggable
+    const draggableElements = document.querySelectorAll('.floating-box, .video-box');
+    let isDragging = false;
+    let currentElement = null;
+    let offsetX, offsetY;
+    
+    draggableElements.forEach(element => {
+      element.addEventListener('mousedown', startDrag);
+      element.addEventListener('touchstart', startDragTouch, { passive: false });
+    });
+    
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', dragTouch, { passive: false });
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
+    
+    function startDrag(e) {
+      isDragging = true;
+      currentElement = this;
       
-        document.getElementById('noel-button').addEventListener('click', function() {
-          window.location.href = 'pages/noel.html';
-        });
-      </script>
-    <script src="js/audio.js"></script>
-    <script src="js/visual-effects.js"></script>
-    <script src="js/ritual.js"></script>
-    <script src="js/main.js"></script>
+      // Bring to front
+      const maxZ = Math.max(...Array.from(draggableElements).map(el => parseInt(el.style.zIndex || 0)));
+      currentElement.style.zIndex = maxZ + 1;
+      
+      offsetX = e.clientX - currentElement.getBoundingClientRect().left;
+      offsetY = e.clientY - currentElement.getBoundingClientRect().top;
+    }
+    
+    function startDragTouch(e) {
+      e.preventDefault();
+      isDragging = true;
+      currentElement = this;
+      
+      // Bring to front
+      const maxZ = Math.max(...Array.from(draggableElements).map(el => parseInt(el.style.zIndex || 0)));
+      currentElement.style.zIndex = maxZ + 1;
+      
+      const touch = e.touches[0];
+      offsetX = touch.clientX - currentElement.getBoundingClientRect().left;
+      offsetY = touch.clientY - currentElement.getBoundingClientRect().top;
+    }
+    
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      
+      currentElement.style.left = (e.clientX - offsetX) + 'px';
+      currentElement.style.top = (e.clientY - offsetY) + 'px';
+    }
+    
+    function dragTouch(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      
+      const touch = e.touches[0];
+      currentElement.style.left = (touch.clientX - offsetX) + 'px';
+      currentElement.style.top = (touch.clientY - offsetY) + 'px';
+    }
+    
+    function stopDrag() {
+      isDragging = false;
+      currentElement = null;
+    }
+  </script>
 </body>
 </html>
